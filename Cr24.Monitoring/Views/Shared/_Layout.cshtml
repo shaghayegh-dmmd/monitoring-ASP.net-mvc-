@@ -1,0 +1,145 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+
+    <link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/fonts")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/bootstrap-rtl.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/bootstrap.css")" rel="stylesheet" type="text/css" />
+
+    <script src="@Url.Content("~/Scripts/ShowMessageForReturnedResult.js")"></script>
+    <script src="@Url.Content("~/Scripts/jquery.validate.js")"></script>
+    <script src="@Url.Content("~/Scripts/jquery-3.4.1.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/script.js")"></script>
+    <script src="@Url.Content("~/Scripts/bootstrap.js")"></script>
+    <script src="@Url.Content("~/Scripts/modernizr-2.8.3.js")"></script>
+
+
+
+</head>
+<body class="hold-transition skin-blue sidebar-mini" id="body">
+    <div class="wrapper">
+        <header class="main-header">
+            <div class="logo">
+                <span class="logo-lg">
+                    <b>
+                        <span>سیستم مانیتورینگ</span>
+                    </b>
+                </span>
+            </div>
+
+            <nav class="navbar navbar-static-top">
+
+                <a href="#" id="sidebar-toggle" class="sidebar-toggle" data-toggle="push-menu" role="button">
+
+                    <img src="~/Content/Image/menu.png"/>
+                </a>
+
+                <div class="navbar-custom-menu">
+                    <ul class="nav navbar-nav">
+                        <li class="user user-menu">
+                            @*<a>
+                                    <span class=" hidden-xs">تاریخ آخرین بروز رسانی:@ActionService.GetUpdateDay() </span>
+                                </a>*@
+                            <ul class="dropdown-menu">
+                                <!-- User image -->
+                                <li class="user-header">
+                                    <p>
+                                    </p>
+                                </li>
+                                <li class="user-body">
+                                    <div class="row">
+                                        <div class="col-xs-4 text-center">
+                                            <a href="#">صفحه من</a>
+                                        </div>
+                                        <div class="col-xs-4 text-center">
+                                            <a href="#">فروش</a>
+                                        </div>
+                                        <div class="col-xs-4 text-center">
+                                            <a href="#">دوستان</a>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="user-footer">
+                                    <div class="pull-right">
+                                        <a href="#" class="btn btn-default btn-flat">پروفایل</a>
+                                    </div>
+                                    <div class="pull-left">
+                                        <a href="#" class="btn btn-default btn-flat">خروج</a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <aside id="main-sidebar" class="main-sidebar">
+            <section class="sidebar">
+                <ul id="menu-wrapper" class="sidebar-menu" data-widget="tree">
+                </ul>
+
+            </section>
+        </aside>
+        <div class="content-wrapper">
+
+            <div id="header-wrapper">
+
+            </div>
+
+            <div id="content-wrapper">
+            </div>
+            @RenderBody()
+        </div>
+        <footer class="main-footer text-center" style="color: gray">
+
+            <div style="padding-top: 20px;font-size: 10px">
+                <strong>
+                    « تمامی حقوق این سامانه متعلق به بانک سامان است »
+                </strong>
+            </div>
+        </footer>
+        <div class="control-sidebar-bg"></div>
+    </div>
+
+    @*<div class="container body-content">
+            @RenderBody()
+            <hr />
+        </div>
+        <footer>
+            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+        </footer>*@
+
+    @*@RenderSection("scripts", required: false)*@
+
+
+</body>
+<script>
+    $("#menu-wrapper").load("@Url.Action("LoadMenu", "Home")");
+
+    $("#sidebar-toggle").click(function () {
+
+        if ($("#main-sidebar").is(":hidden")) {
+
+            $('#main-sidebar').show();
+            $(".content-wrapper").css("margin-right", "230px");
+            $(".navbar-static-top").css("margin-right", "230px");
+            $(".main-footer").css("margin-right", "230px");
+
+        }
+        else if ($('#main-sidebar').is(":visible")) {
+
+            $('#main-sidebar').hide();
+            $(".content-wrapper").css("margin-right", "0px");
+            $(".navbar-static-top").css("margin-right", "0px");
+            $(".main-footer").css("margin-right", "0px");
+
+
+        }
+    });
+</script>
+</html>
