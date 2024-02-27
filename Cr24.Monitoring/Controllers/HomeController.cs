@@ -17,11 +17,16 @@ namespace Cr24.Monitoring.Controllers
             var mdl = new List<ServiceStatusData>()
             {
 
-                new ServiceStatusData() { Name = "ثبت احوال", Total = 10 , Error = 1,Percent = 40 ,LeadingToError = true},
+               new ServiceStatusData() { Name = "ثبت احوال", Total = 10 , Error = 1,Percent = 40 ,LeadingToError = true},
                 new ServiceStatusData() { Name = "شاهکار", Total = 20, Error = 2, Percent = 60, LeadingToError = false },
                 new ServiceStatusData() { Name = "پست", Total = 30, Error = 0, Percent = 80, LeadingToError = true },
                 new ServiceStatusData() { Name = "تسهیلات", Total = 40, Error = 3, Percent = 100, LeadingToError = false },
-                new ServiceStatusData() { Name = "چک برگشتی", Total = 5, Error = 0, Percent = 90, LeadingToError = true }
+                new ServiceStatusData() { Name = "چک برگشتی", Total = 5, Error = 0, Percent = 90, LeadingToError = true },
+                 new ServiceStatusData() { Name = "سما چک", Total = 20, Error = 2, Percent = 60, LeadingToError = false },
+                new ServiceStatusData() { Name = "سمارفع سو", Total = 30, Error = 0, Percent = 80, LeadingToError = true },
+                new ServiceStatusData() { Name = "سمات اصلی", Total = 40, Error = 3, Percent = 100, LeadingToError = false },
+                new ServiceStatusData() { Name = "سمات ضامن", Total = 30, Error = 0, Percent = 80, LeadingToError = true },
+                new ServiceStatusData() { Name = "سمات تسویه", Total = 40, Error = 3, Percent = 100, LeadingToError = false }
             };
 
 
@@ -31,12 +36,17 @@ namespace Cr24.Monitoring.Controllers
 
             var timer = new System.Threading.Timer((e) =>
             {
-               
+
                 mdl.Find(o => o.Name == "ثبت احوال").Percent = rnd.Next(0, 100);
                 mdl.Find(o => o.Name == "شاهکار").Percent = rnd.Next(0, 100);
                 mdl.Find(o => o.Name == "پست").Percent = rnd.Next(0, 100);
                 mdl.Find(o => o.Name == "تسهیلات").Percent = rnd.Next(0, 100);
                 mdl.Find(o => o.Name == "چک برگشتی").Percent = rnd.Next(0, 100);
+                mdl.Find(o => o.Name == "سما چک").Percent = rnd.Next(0, 100);
+                mdl.Find(o => o.Name == "سمارفع سو").Percent = rnd.Next(0, 100);
+                mdl.Find(o => o.Name == "سمات اصلی").Percent = rnd.Next(0, 100);
+                mdl.Find(o => o.Name == "سمات ضامن").Percent = rnd.Next(0, 100);
+                mdl.Find(o => o.Name == "سمات تسویه").Percent = rnd.Next(0, 100);
 
 
             }, null, startTimeSpan, periodTimeSpan);
