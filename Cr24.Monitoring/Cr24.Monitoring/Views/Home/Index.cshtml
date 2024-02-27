@@ -1,0 +1,106 @@
+﻿
+@model IEnumerable<ServiceStatusData>
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="refresh" content="30">
+    <title>CodePen - Liquid Progress bar</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="@Url.Content("~/Content/css/all.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/css/normalize.min.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/css/style.css")" rel="stylesheet" type="text/css" />
+
+    @*<script src="@Url.Content("~/Scripts/ShowMessageForReturnedResult.js")"></script>
+    <script src="@Url.Content("~/Scripts/jquery.validate.js")"></script>
+    <script src="@Url.Content("~/Scripts/jquery-3.4.1.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/bootstrap.js")"></script>
+    <script src="@Url.Content("~/Scripts/modernizr-2.8.3.js")"></script>*@
+
+ 
+</head>
+
+<body>
+    <!-- partial:index.partial.html -->
+
+
+
+    <div class="row">
+        @foreach (var item in Model)
+        {
+
+            <div class="col">
+                <h4> @item.Name</h4>
+                <div class="progress" role="progressbar">
+                    <div class="progress-inner">
+                        <div class="progress-indicator"></div>
+                        <div class="progress-indicator"></div>
+                    </div>
+                    <span class="progress-label">
+                        <strong class="Percent"> @item.Percent</strong>
+                        <span>%</span>
+                    </span>
+                </div>
+
+                <div class="description">
+                    <p>تعداد استعلام: @item.Total</p>
+                    <p>تعدا خطا: @item.Error</p>
+                    <p>منتهی به خطا: @item.LeadingToError</p>
+                </div>
+
+            </div>
+
+        }
+    </div>
+
+    <script>
+
+        (function () {
+            const progress = document.querySelectorAll(`.progress`);
+            const progressLabel = document.querySelectorAll(`.progress-label > strong`);
+            const percent = document.querySelectorAll(`.Percent`);
+            
+        /*shaghayegh*/
+
+            for (let i = 0; i < progress.length; i++) {
+               
+
+                let value = percent[i].innerText;
+                    progressLabel[i].textContent = value;
+                    progress[i].style.setProperty(`--progress-value`, value);
+                    progress[i].dataset.value = value;
+
+                   
+                    if (value >= 80 && value <= 100) {
+                        console.log(value);
+                        progress[i].style.setProperty(`--color-progress-alpha`, "#a6cf98");
+                        progress[i].style.setProperty(`--color-progress`, "#557c55");
+                    }
+                    else if (value >= 50 && value < 80) {
+                        progress[i].style.setProperty(`--color-progress-alpha`, "#AA8B56");
+                        progress[i].style.setProperty(`--color-progress`, "#F0A04B");
+                    } else if (value >= 0 && value < 50) {
+                        progress[i].style.setProperty(`--color-progress-alpha`, "#ff7366");
+                        progress[i].style.setProperty(`--color-progress`, "#ff1500");
+                    }
+                    
+                    if (value > 50) progress[i].classList.add(`progress--upper-half-value`);
+                    else
+                        progress[i].classList.contains("progress--upper-half-value") &&
+                            progress[i].classList.remove(`progress--upper-half-value`);
+            
+
+            }
+        /*end*/
+
+
+        })();
+
+    </script>
+</body>
+</html>

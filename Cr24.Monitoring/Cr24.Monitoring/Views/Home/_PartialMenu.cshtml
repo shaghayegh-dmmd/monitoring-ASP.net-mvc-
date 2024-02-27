@@ -1,0 +1,61 @@
+﻿@model Cr24.Monitoring.Models.MenuModel
+
+@{
+    Layout = null;
+}
+
+@foreach (var childMenu in Model.ChildList)
+{
+    if (childMenu.ChildList.Count == 0)
+    {
+        <li>
+            <a href="" data-ctl="@childMenu.ControlName" data-action="@childMenu.ActionName" data-id="@childMenu.Id">
+
+                <span class="text-medium">
+                    &nbsp;&nbsp;@childMenu.DisplayName
+                </span>
+            </a>
+        </li>
+    }
+    else
+    {
+        <li class="treeview">
+            <a href="">
+                @childMenu.DisplayName
+                <span class="pull-left-container">
+                    <i class="fa fa-angle-right pull-left"></i>
+                </span>
+            </a>
+            <ul class="treeview-menu">
+                <li>
+                    @Html.Partial("_PartialMenu", childMenu)
+                </li>
+            </ul>
+        </li>
+    }
+}
+
+<script>
+
+
+    function LoadContent(url, params) {
+        if (url !== "" && url.indexOf("#") === -1 && url != null)
+            $('#content-wrapper').load(url, params);
+    }
+
+    $('ul.sidebar-menu li a').click(function (e) {
+        e.preventDefault();
+
+        var clickedElement = $(this)[0];
+
+        var controlName = clickedElement.getAttribute("data-ctl");
+        var actionName = clickedElement.getAttribute("data-action");
+        if (controlName && actionName) {
+            ShowProgressbar();
+            LoadContent(baseUrl + controlName + "/" + actionName, function () {
+                HideProgressbar();
+            });
+        }
+    });
+</script>
+
