@@ -17,6 +17,7 @@ namespace Cr24.Monitoring
     public class ServiceStatusData
     {
         public string Name { get; set; }
+        public Double time { get; set; }
         public long Total { get; set; }
         public long Error { get; set; }
         public int Percent { get; set; }
